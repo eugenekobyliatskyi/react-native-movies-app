@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Movies, Search} from '../components';
 
 const SearchTab = () => {
   return (
-    <View>
-      <Text>Search Tab</Text>
-    </View>
+    <>
+      <Search />
+      <Movies data={[{id: 1}, {id: 2}, {id: 3}, {id: 4}]} />
+    </>
   );
 };
 

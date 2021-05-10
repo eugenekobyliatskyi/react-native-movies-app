@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Movies, Search} from '../components';
 
 const FavoriteTab = () => {
   return (
-    <View>
-      <Text>Favorite Tab</Text>
-    </View>
+    <>
+      <Search />
+      <Movies data={[{id: 1}]} />
+    </>
   );
 };
 
