@@ -21,18 +21,20 @@ const Group = ({title, info}) => {
   );
 };
 
-const MoviesDetailsScreen = () => {
+const MoviesDetailsScreen = ({route}) => {
+  const {movie} = route.params;
+
   return (
     <ScrollView style={styles.container}>
       <View>
         <Image
           style={styles.poster}
           source={{
-            uri: 'https://image.tmdb.org/t/p/w500/sgheSKxZkttIe8ONsf2sWXPgip3.jpg',
+            uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
           }}
         />
         <View style={styles.background}></View>
-        <Text style={styles.title}>Monsters, Inc.</Text>
+        <Text style={styles.title}>{movie.title}</Text>
       </View>
       <Section>
         <Group title="Duration" info="02h 15m" />
@@ -40,15 +42,7 @@ const MoviesDetailsScreen = () => {
         <Group title="Language" info="English" />
       </Section>
       <Section>
-        <Group
-          title="Overview"
-          info="James Sullivan and Mike Wazowski are monsters, they earn their
-            living scaring children and are the best in the business... even
-            though they're more afraid of the children than they are of them.
-            When a child accidentally enters their world, James and Mike
-            suddenly find that kids are not to be afraid of and they uncover a
-            conspiracy that could threaten all children across the world."
-        />
+        <Group title="Overview" info={movie.overview} />
       </Section>
     </ScrollView>
   );

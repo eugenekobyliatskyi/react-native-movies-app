@@ -1,11 +1,14 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Movies, Search} from '../components';
+import {GlobalContext} from '../context/Provider';
 
 const FavoriteTab = () => {
+  const {state} = useContext(GlobalContext);
+
   return (
     <>
       <Search />
-      <Movies data={[{id: 1}]} />
+      <Movies data={state.favorite} />
     </>
   );
 };

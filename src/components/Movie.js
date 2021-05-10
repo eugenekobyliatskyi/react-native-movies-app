@@ -8,24 +8,26 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const Movie = ({onPress}) => {
+const Movie = ({onPress, data}) => {
   return (
-    <TouchableOpacity style={styles.wrapper} onPress={onPress}>
+    <TouchableOpacity style={styles.wrapper} onPress={() => onPress(data)}>
       <Image
         style={styles.poster}
         source={{
-          uri: 'https://image.tmdb.org/t/p/w500/sgheSKxZkttIe8ONsf2sWXPgip3.jpg',
+          uri: `https://image.tmdb.org/t/p/w500${data.poster_path}`,
         }}
       />
       <View style={styles.description}>
         <View>
-          <Text style={styles.title}>Monsters, Inc.</Text>
+          <Text style={styles.title}>{data.title}</Text>
           <Text style={styles.info}>2001 | En</Text>
           <Text style={styles.info}>Animation, Comedy, Family</Text>
         </View>
         <View>
-          <Text style={[styles.info, styles.voteAverage]}>7.8</Text>
-          <Text style={styles.info}>Released</Text>
+          <Text style={[styles.info, styles.voteAverage]}>
+            {data.vote_average}
+          </Text>
+          <Text style={styles.info}>{data.status}</Text>
         </View>
       </View>
     </TouchableOpacity>

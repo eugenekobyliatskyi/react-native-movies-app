@@ -1,16 +1,20 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, FlatList, Dimensions} from 'react-native';
+import {GlobalContext} from '../context/Provider';
 import Movie from './Movie';
 
-const Movies = ({data, onPress}) => {
+function Movies({data, onPress = () => {}, onEndReached = () => {}}) {
+  const {state} = useContext(GlobalContext);
+
   return (
     <FlatList
       style={styles.container}
-      data={data}
-      renderItem={({item}) => <Movie {...item} onPress={onPress} />}
+      data={data ?? state.movies}
+      renderItem={({item}) => <Movie data={item} onPress={onPress} />}
+      onEndReached={onEndReached}
     />
   );
-};
+}
 
 const width = Dimensions.get('window').width;
 const toNormalSize = n => (width * n) / 720;
