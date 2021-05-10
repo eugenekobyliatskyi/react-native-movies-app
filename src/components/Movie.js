@@ -1,9 +1,16 @@
 import React from 'react';
-import {StyleSheet, View, Text, Image, Dimensions} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
 
-const Movie = () => {
+const Movie = ({onPress}) => {
   return (
-    <View style={styles.wrapper}>
+    <TouchableOpacity style={styles.wrapper} onPress={onPress}>
       <Image
         style={styles.poster}
         source={{
@@ -21,7 +28,7 @@ const Movie = () => {
           <Text style={styles.info}>Released</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

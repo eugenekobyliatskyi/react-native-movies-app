@@ -1,4 +1,5 @@
 import React from 'react';
+import {Button} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen, MovieDetailsScreen} from '../screens';
 
@@ -16,7 +17,11 @@ const HomeTab = () => {
         },
       }}>
       <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen name="Movie details" component={MovieDetailsScreen} />
+      <Stack.Screen
+        name="Movie details"
+        component={MovieDetailsScreen}
+        options={{headerRight: () => <Button title="+" />}}
+      />
     </Stack.Navigator>
   );
 };
