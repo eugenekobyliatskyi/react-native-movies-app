@@ -1,12 +1,26 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {StyleSheet, View, Dimensions, ScrollView} from 'react-native';
+import Movie from '../components/Movie';
 
 const HomeScreen = () => {
   return (
     <View>
-      <Text>Home Screen</Text>
+      <ScrollView style={styles.container}>
+        <Movie />
+        <Movie />
+        <Movie />
+      </ScrollView>
     </View>
   );
 };
+
+const width = Dimensions.get('window').width;
+const toNormalSize = n => (width * n) / 720;
+
+const styles = StyleSheet.create({
+  container: {
+    padding: toNormalSize(30),
+  },
+});
 
 export default HomeScreen;
