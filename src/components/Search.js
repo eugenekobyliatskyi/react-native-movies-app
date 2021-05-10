@@ -1,10 +1,14 @@
 import React from 'react';
 import {StyleSheet, View, TextInput, Dimensions} from 'react-native';
 
-const Search = ({}) => {
+const Search = ({onChangeText}) => {
   return (
     <View style={styles.wrapper}>
-      <TextInput style={styles.input} placeholder="Search" />
+      <TextInput
+        style={styles.input}
+        onChangeText={onChangeText}
+        placeholder="Search"
+      />
     </View>
   );
 };

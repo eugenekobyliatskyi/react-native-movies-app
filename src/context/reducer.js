@@ -3,18 +3,21 @@ const reducer = (state, {type, payload}) => {
     case 'LOAD_MOVIES':
       return {
         ...state,
-        last_movie_id: payload.id,
+        last_id: payload.id,
         movies: [...state.movies, ...payload.movies],
       };
-    case 'SET_ACTIVE_MOVIE':
+    case 'SET_SELECTED_MOVIE':
       return {
         ...state,
-        active_movie: payload,
+        selected: payload,
       };
-    case 'ADD_TO_FAVOTIRE':
+    case 'TOGGLE_ADD_TO_FAVORITES':
+      const {selected, favorites} = state;
       return {
         ...state,
-        favorite: [...state.favorite, state.active_movie],
+        favorites: favorites.find(({id}) => id === selected.id)
+          ? favorites.filter(({id}) => id !== selected.id)
+          : [...favorites, selected],
       };
     default:
       return state;

@@ -12,7 +12,7 @@ const HomeTab = () => {
 
   const loadMovies = () => {
     useFetchMovieDetails(
-      state.last_movie_id + 1,
+      state.last_id + 1,
       response => {
         dispatch({
           type: 'LOAD_MOVIES',
@@ -47,7 +47,7 @@ const HomeTab = () => {
           headerRight: () => (
             <Button
               title="+"
-              onPress={() => dispatch({type: 'ADD_TO_FAVOTIRE'})}
+              onPress={() => dispatch({type: 'TOGGLE_ADD_TO_FAVORITES'})}
             />
           ),
         }}

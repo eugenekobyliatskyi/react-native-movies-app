@@ -4,10 +4,10 @@ import reducer from './reducer';
 export const GlobalContext = createContext({});
 
 const initialState = {
-  active_movie: null,
-  last_movie_id: 584,
+  selected: null,
+  last_id: 584,
   movies: [],
-  favorite: [],
+  favorites: [],
 };
 
 const GlobalProvider = ({children}) => {

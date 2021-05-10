@@ -10,7 +10,7 @@ const HomeScreen = ({navigation}) => {
   const loadMovies = () => {
     setLoading(false);
     useFetchMovieDetails(
-      state.last_movie_id + 1,
+      state.last_id + 1,
       response => {
         dispatch({type: 'LOAD_MOVIES', payload: response});
       },
@@ -22,7 +22,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <Movies
       onPress={movie => {
-        dispatch({type: 'SET_ACTIVE_MOVIE', payload: movie});
+        dispatch({type: 'SET_SELECTED_MOVIE', payload: movie});
         navigation.navigate('Movie details', {movie});
       }}
       onEndReached={() => {
