@@ -1,4 +1,5 @@
 import React, {useContext, useState} from 'react';
+import {ActivityIndicator} from 'react-native';
 import {Movies} from '../components';
 import {GlobalContext} from '../context/Provider';
 import {useFetchMovieDetails} from '../utils';
@@ -13,10 +14,10 @@ const HomeScreen = ({navigation}) => {
       state.last_id + 1,
       response => {
         dispatch({type: 'LOAD_MOVIES', payload: response});
+        setLoading(true);
       },
-      5,
+      10,
     );
-    setLoading(true);
   };
 
   return (
@@ -25,6 +26,9 @@ const HomeScreen = ({navigation}) => {
         dispatch({type: 'SET_SELECTED_MOVIE', payload: movie});
         navigation.navigate('Movie details', {movie});
       }}
+      ListFooterComponent={
+        <ActivityIndicator style={{padding: 30}} size="small" color="#156FB5" />
+      }
       onEndReached={() => {
         if (loading) loadMovies();
       }}

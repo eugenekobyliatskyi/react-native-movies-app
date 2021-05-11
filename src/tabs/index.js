@@ -1,5 +1,5 @@
 import HomeTab from './HomeTab';
 import SearchTab from './SearchTab';
-import FavotireTab from './FavoriteTab';
+import FavoriteTab from './FavoriteTab';
 
-export {HomeTab, SearchTab, FavotireTab};
+export {HomeTab, SearchTab, FavoriteTab};

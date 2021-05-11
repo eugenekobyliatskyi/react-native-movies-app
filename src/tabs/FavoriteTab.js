@@ -12,8 +12,8 @@ const FavoriteTab = () => {
 
   const changeTextHandler = value => {
     if (value) {
-      setMovies(prev =>
-        prev.filter(
+      setMovies(() =>
+        state.favorites.filter(
           movie => movie.title.toLowerCase().search(value.toLowerCase()) !== -1,
         ),
       );

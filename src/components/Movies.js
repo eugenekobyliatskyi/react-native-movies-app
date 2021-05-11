@@ -1,9 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {StyleSheet, FlatList, Dimensions} from 'react-native';
 import {GlobalContext} from '../context/Provider';
 import Movie from './Movie';
 
-function Movies({data, onPress = () => {}, onEndReached = () => {}}) {
+function Movies({
+  data,
+  onPress = () => {},
+  ListFooterComponent,
+  onEndReached = () => {},
+}) {
   const {state} = useContext(GlobalContext);
 
   return (
@@ -11,6 +16,7 @@ function Movies({data, onPress = () => {}, onEndReached = () => {}}) {
       style={styles.container}
       data={data ?? state.movies}
       renderItem={({item}) => <Movie data={item} onPress={onPress} />}
+      ListFooterComponent={ListFooterComponent}
       onEndReached={onEndReached}
     />
   );
