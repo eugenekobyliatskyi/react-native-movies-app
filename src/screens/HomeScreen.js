@@ -16,7 +16,7 @@ const HomeScreen = ({navigation}) => {
         dispatch({type: 'LOAD_MOVIES', payload: response});
         setLoading(true);
       },
-      10,
+      5,
     );
   };
 

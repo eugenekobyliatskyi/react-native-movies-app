@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react';
-import {Button} from 'react-native';
+import {Button, AsyncStorage} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen, MovieDetailsScreen} from '../screens';
 import {GlobalContext} from '../context/Provider';
@@ -23,8 +23,10 @@ const HomeTab = () => {
     );
   };
 
-  useEffect(() => {
-    if (!state.movies.length) {
+  useEffect(async () => {
+    const value = await AsyncStorage.getItem('state');
+    if (value === null || !JSON.parse(value).movies?.length) {
+      console.log('LOADING MOVIES');
       loadMovies();
     }
   }, []);
