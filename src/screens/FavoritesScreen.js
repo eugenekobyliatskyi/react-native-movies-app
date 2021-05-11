@@ -2,8 +2,8 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Movies, Search} from '../components';
 import {GlobalContext} from '../context/Provider';
 
-const FavoriteTab = () => {
-  const {state} = useContext(GlobalContext);
+const FavoritesScreen = ({navigation}) => {
+  const {state, dispatch} = useContext(GlobalContext);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const FavoriteTab = () => {
   }, [state]);
 
   const changeTextHandler = value => {
-    if (value) {
+    if (value.trim()) {
       setMovies(() =>
         state.favorites.filter(
           movie => movie.title.toLowerCase().search(value.toLowerCase()) !== -1,
@@ -25,9 +25,15 @@ const FavoriteTab = () => {
   return (
     <>
       <Search onChangeText={changeTextHandler} />
-      <Movies data={movies} />
+      <Movies
+        onPress={movie => {
+          dispatch({type: 'SET_SELECTED_MOVIE', payload: movie});
+          navigation.navigate('Movie details', {movie});
+        }}
+        data={movies}
+      />
     </>
   );
 };
 
-export default FavoriteTab;
+export default FavoritesScreen;
