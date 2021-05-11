@@ -50,7 +50,7 @@ const Movie = ({onPress, data}) => {
 };
 
 const width = Dimensions.get('window').width;
-const toNormalSize = n => (width * n) / 720;
+const toNormalSize = n => (width * n) / 584;
 
 const styles = StyleSheet.create({
   wrapper: {

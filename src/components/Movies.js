@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import {StyleSheet, FlatList, Dimensions} from 'react-native';
 import {GlobalContext} from '../context/Provider';
 import Movie from './Movie';
@@ -23,7 +23,7 @@ function Movies({
 }
 
 const width = Dimensions.get('window').width;
-const toNormalSize = n => (width * n) / 720;
+const toNormalSize = n => (width * n) / 584;
 
 const styles = StyleSheet.create({
   container: {
