@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, TextInput, Dimensions} from 'react-native';
+import {StyleSheet, View, TextInput} from 'react-native';
+import {toNormalSize} from '../utils';
 
 const Search = ({onChangeText}) => {
   return (
@@ -12,9 +13,6 @@ const Search = ({onChangeText}) => {
     </View>
   );
 };
-
-const width = Dimensions.get('window').width;
-const toNormalSize = n => (width * n) / 584;
 
 const styles = StyleSheet.create({
   wrapper: {

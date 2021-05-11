@@ -1,28 +1,22 @@
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, View, Text, Image, TouchableOpacity} from 'react-native';
+import {toNormalSize} from '../utils';
 
 const Movie = ({onPress, data}) => {
   const {
     release_date,
     genres: _genres,
-    spoken_languages,
+    original_language,
     poster_path,
     title,
     vote_average,
     status,
   } = data;
+
   const yearOfRelease = release_date.split('-')[0];
   const genres = _genres.map(({name}) => name).join(', ');
-  const languages = spoken_languages
-    .map(({iso_639_1}) => iso_639_1.toUpperCase())
-    .join(', ');
+  const language =
+    original_language[0].toUpperCase() + original_language.substring(1);
 
   return (
     <TouchableOpacity style={styles.wrapper} onPress={() => onPress(data)}>
@@ -36,7 +30,7 @@ const Movie = ({onPress, data}) => {
         <View>
           <Text style={styles.title}>{title}</Text>
           <Text style={styles.info}>
-            {yearOfRelease} | {languages}
+            {yearOfRelease} | {language}
           </Text>
           <Text style={styles.info}>{genres}</Text>
         </View>
@@ -48,9 +42,6 @@ const Movie = ({onPress, data}) => {
     </TouchableOpacity>
   );
 };
-
-const width = Dimensions.get('window').width;
-const toNormalSize = n => (width * n) / 584;
 
 const styles = StyleSheet.create({
   wrapper: {

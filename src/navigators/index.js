@@ -1,19 +1,3 @@
-import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {HomeTab, FavoritesTab} from '../tabs';
-
-const Tab = createBottomTabNavigator();
-
-const AppNavigator = () => {
-  return (
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeTab} />
-        <Tab.Screen name="Favorites" component={FavoritesTab} />
-      </Tab.Navigator>
-    </NavigationContainer>
-  );
-};
-
-export default AppNavigator;
+export {default as AppBottomTabNavigator} from './AppBottomTabNavigator';
+export {default as HomeStackNavigator} from './HomeStackNavigator';
+export {default as FavoritesStackNavigator} from './FavoritesStackNavigator';

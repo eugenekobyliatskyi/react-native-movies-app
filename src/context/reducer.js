@@ -1,25 +1,24 @@
-import {AsyncStorage} from 'react-native';
+import {mergeData} from '../utils/storage';
 
 const reducer = (state, {type, payload}) => {
   let newState;
 
   switch (type) {
-    case 'SET_STATE':
+    case 'set-state':
       return payload;
-    case 'LOAD_MOVIES':
+    case 'set-movies':
       newState = {
         ...state,
-        last_id: payload.id,
-        movies: [...state.movies, ...payload.movies],
+        movies: [...state.movies, ...payload],
       };
-      AsyncStorage.mergeItem('state', JSON.stringify(newState));
+      mergeData('state', newState);
       return newState;
-    case 'SET_SELECTED_MOVIE':
+    case 'set-selected-movie':
       return {
         ...state,
         selected: payload,
       };
-    case 'TOGGLE_ADD_TO_FAVORITES':
+    case 'set-favorites':
       const {selected, favorites} = state;
       newState = {
         ...state,
@@ -27,7 +26,7 @@ const reducer = (state, {type, payload}) => {
           ? favorites.filter(({id}) => id !== selected.id)
           : [...favorites, selected],
       };
-      AsyncStorage.mergeItem('state', JSON.stringify(newState));
+      mergeData('state', newState);
       return newState;
     default:
       return state;

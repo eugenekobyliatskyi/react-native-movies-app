@@ -1,5 +1,3 @@
-import Movie from './Movie';
-import Movies from './Movies';
-import Search from './Search';
-
-export {Movie, Movies, Search};
+export {default as Movie} from './Movie';
+export {default as Movies} from './Movies';
+export {default as Search} from './Search';

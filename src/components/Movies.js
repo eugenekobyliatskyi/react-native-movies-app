@@ -1,29 +1,25 @@
 import React, {useContext} from 'react';
-import {StyleSheet, FlatList, Dimensions} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import {GlobalContext} from '../context/Provider';
-import Movie from './Movie';
+import {Movie} from './index';
+import {toNormalSize} from '../utils';
 
-function Movies({
-  data,
-  onPress = () => {},
-  ListFooterComponent,
-  onEndReached = () => {},
-}) {
-  const {state} = useContext(GlobalContext);
+function Movies({data, onPress = () => {}, ListEmptyComponent = null}) {
+  const {movies} = useContext(GlobalContext);
+
+  const renderItem = ({item}) => <Movie data={item} onPress={onPress} />;
+  const FooterComponent = <View style={{padding: toNormalSize(15)}} />;
 
   return (
     <FlatList
       style={styles.container}
-      data={data ?? state.movies}
-      renderItem={({item}) => <Movie data={item} onPress={onPress} />}
-      ListFooterComponent={ListFooterComponent}
-      onEndReached={onEndReached}
+      data={data ?? movies}
+      renderItem={renderItem}
+      ListEmptyComponent={ListEmptyComponent}
+      ListFooterComponent={FooterComponent}
     />
   );
 }
-
-const width = Dimensions.get('window').width;
-const toNormalSize = n => (width * n) / 584;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,37 +1,41 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useCallback} from 'react';
 import {Movies, Search} from '../components';
 import {GlobalContext} from '../context/Provider';
+import {DETAILS_SCREEN} from '../constants';
 
 const FavoritesScreen = ({navigation}) => {
-  const {state, dispatch} = useContext(GlobalContext);
-  const [movies, setMovies] = useState([]);
+  const {favorites, setSelectedMovie} = useContext(GlobalContext);
+  const [_movies, _setMovies] = useState([]);
 
   useEffect(() => {
-    setMovies(state.favorites);
-  }, [state]);
+    _setMovies(favorites);
+  }, [favorites]);
 
-  const changeTextHandler = value => {
-    if (value.trim()) {
-      setMovies(() =>
-        state.favorites.filter(
-          movie => movie.title.toLowerCase().search(value.toLowerCase()) !== -1,
-        ),
-      );
-    } else {
-      setMovies(state.favorites);
-    }
+  const handleChangeText = useCallback(
+    value => {
+      if (value.trim()) {
+        _setMovies(() =>
+          favorites.filter(
+            movie =>
+              movie.title.toLowerCase().search(value.toLowerCase()) !== -1,
+          ),
+        );
+      } else {
+        _setMovies(favorites);
+      }
+    },
+    [favorites],
+  );
+
+  const handlePress = movie => {
+    setSelectedMovie(movie);
+    navigation.navigate(DETAILS_SCREEN, {movie});
   };
 
   return (
     <>
-      <Search onChangeText={changeTextHandler} />
-      <Movies
-        onPress={movie => {
-          dispatch({type: 'SET_SELECTED_MOVIE', payload: movie});
-          navigation.navigate('Movie details', {movie});
-        }}
-        data={movies}
-      />
+      <Search onChangeText={handleChangeText} />
+      <Movies data={_movies} onPress={handlePress} />
     </>
   );
 };
