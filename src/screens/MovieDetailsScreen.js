@@ -21,8 +21,27 @@ const Group = ({title, info}) => {
   );
 };
 
-const MoviesDetailsScreen = ({route}) => {
-  const {movie} = route.params;
+const MovieDetailsScreen = ({route}) => {
+  const {
+    movie: {
+      poster_path,
+      title,
+      overview,
+      runtime: _runtime,
+      genres: _genres,
+      spoken_languages,
+    },
+  } = route.params;
+
+  const hours = Math.floor(_runtime / 60).toString();
+  const minutes = (_runtime % 60).toString();
+  const runtime = `${hours.length === 1 ? `0${hours}` : hours}h ${
+    minutes.length === 1 ? `0${minutes}` : minutes
+  }m`;
+  const genres = _genres.map(({name}) => name).join(', ');
+  const languages = spoken_languages
+    .map(({english_name}) => english_name)
+    .join(', ');
 
   return (
     <ScrollView style={styles.container}>
@@ -30,19 +49,19 @@ const MoviesDetailsScreen = ({route}) => {
         <Image
           style={styles.poster}
           source={{
-            uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+            uri: `https://image.tmdb.org/t/p/w500${poster_path}`,
           }}
         />
         <View style={styles.background}></View>
-        <Text style={styles.title}>{movie.title}</Text>
+        <Text style={styles.title}>{title}</Text>
       </View>
       <Section>
-        <Group title="Duration" info="02h 15m" />
-        <Group title="Genre" info="Animation, Comedy, Family" />
-        <Group title="Language" info="English" />
+        <Group title="Duration" info={runtime} />
+        <Group title="Genre" info={genres} />
+        <Group title="Languages" info={languages} />
       </Section>
       <Section>
-        <Group title="Overview" info={movie.overview} />
+        <Group title="Overview" info={overview} />
       </Section>
     </ScrollView>
   );
@@ -95,4 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoviesDetailsScreen;
+export default MovieDetailsScreen;
