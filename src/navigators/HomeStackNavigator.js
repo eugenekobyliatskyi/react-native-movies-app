@@ -6,11 +6,13 @@ import {GlobalContext} from '../context/Provider';
 import {fetchMovies} from '../utils';
 import {retrieveData} from '../utils/storage';
 import {HOME_SCREEN, DETAILS_SCREEN} from '../constants';
+import {Favorite} from '../components';
 
 const {Navigator, Screen} = createStackNavigator();
 
 const HomeStackNavigator = () => {
-  const {setMovies, setFavorites} = useContext(GlobalContext);
+  const {selected, favorites, setMovies, setFavorites} =
+    useContext(GlobalContext);
 
   useEffect(() => {
     retrieveData('state', data => {
@@ -24,8 +26,12 @@ const HomeStackNavigator = () => {
     headerTitleStyle: styles.headerTitle,
   };
 
+  const isActive = () => {
+    return !!favorites.find(movie => movie.id === selected.id);
+  };
+
   const movieDetailsScreenOptions = {
-    headerRight: () => <Button title="+" onPress={() => setFavorites()} />,
+    headerRight: () => <Favorite active={isActive()} onPress={setFavorites} />,
   };
 
   return (

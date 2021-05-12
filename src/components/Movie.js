@@ -19,7 +19,10 @@ const Movie = ({onPress, data}) => {
     original_language[0].toUpperCase() + original_language.substring(1);
 
   return (
-    <TouchableOpacity style={styles.wrapper} onPress={() => onPress(data)}>
+    <TouchableOpacity
+      style={styles.wrapper}
+      onPress={() => onPress(data)}
+      activeOpacity={0.6}>
       <Image
         style={styles.poster}
         source={{

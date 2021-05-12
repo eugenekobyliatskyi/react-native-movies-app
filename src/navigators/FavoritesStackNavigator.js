@@ -4,18 +4,23 @@ import {Button, StyleSheet} from 'react-native';
 import {MovieDetailsScreen, FavoritesScreen} from '../screens';
 import {GlobalContext} from '../context/Provider';
 import {DETAILS_SCREEN, FAVORITES_SCREEN} from '../constants';
+import {Favorite} from '../components';
 
 const {Navigator, Screen} = createStackNavigator();
 
 const FavoritesStackNavigator = () => {
-  const {setFavorites} = useContext(GlobalContext);
+  const {selected, favorites, setFavorites} = useContext(GlobalContext);
 
   const screenOptions = {
     headerTitleStyle: styles.headerTitle,
   };
 
+  const isActive = () => {
+    return !!favorites.find(movie => movie.id === selected.id);
+  };
+
   const movieDetailsScreenOptions = {
-    headerRight: () => <Button title="+" onPress={() => setFavorites()} />,
+    headerRight: () => <Favorite active={isActive()} onPress={setFavorites} />,
   };
 
   return (

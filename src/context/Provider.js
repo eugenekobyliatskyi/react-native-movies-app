@@ -11,7 +11,10 @@ const initialState = {
 };
 
 const GlobalProvider = ({children}) => {
-  const [{movies, favorites}, dispatch] = useReducer(reducer, initialState);
+  const [{selected, movies, favorites}, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
 
   const setState = useCallback(newState => {
     dispatch({
@@ -20,25 +23,25 @@ const GlobalProvider = ({children}) => {
     });
   }, []);
 
-  const setMovies = newMovies => {
+  const setMovies = useCallback(newMovies => {
     dispatch({
       type: 'set-movies',
       payload: newMovies,
     });
-  };
+  }, []);
 
-  const setSelectedMovie = movie => {
+  const setSelectedMovie = useCallback(movie => {
     dispatch({
       type: 'set-selected-movie',
       payload: movie,
     });
-  };
+  }, []);
 
-  const setFavorites = () => {
+  const setFavorites = useCallback(() => {
     dispatch({
       type: 'set-favorites',
     });
-  };
+  }, []);
 
   useEffect(() => {
     retrieveData('state', data => {
@@ -53,6 +56,7 @@ const GlobalProvider = ({children}) => {
   return (
     <GlobalContext.Provider
       value={{
+        selected,
         movies,
         favorites,
         setMovies,
