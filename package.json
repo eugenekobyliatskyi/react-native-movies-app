@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^5.11.10",
     "@react-navigation/native": "^5.9.4",
@@ -26,13 +25,7 @@
     "@babel/core": "^7.12.9",
     "@babel/runtime": "^7.12.5",
     "@react-native-community/eslint-config": "^2.0.0",
-    "babel-jest": "^26.6.3",
     "eslint": "7.14.0",
-    "jest": "^26.6.3",
-    "metro-react-native-babel-preset": "^0.64.0",
-    "react-test-renderer": "17.0.1"
-  },
-  "jest": {
-    "preset": "react-native"
+    "metro-react-native-babel-preset": "^0.64.0"
   }
 }

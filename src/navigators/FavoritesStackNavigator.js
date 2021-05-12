@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Button, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {MovieDetailsScreen, FavoritesScreen} from '../screens';
 import {GlobalContext} from '../context/Provider';
 import {DETAILS_SCREEN, FAVORITES_SCREEN} from '../constants';
