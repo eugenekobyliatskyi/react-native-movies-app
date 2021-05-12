@@ -4,15 +4,20 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {toNormalSize} from '../utils';
 
 const Favorite = ({active, onPress = () => {}}) => {
-  let iconName, color;
+  const status = active ? 'active' : 'inactive';
 
-  if (active) {
-    iconName = 'favorite';
-    color = 'tomato';
-  } else {
-    iconName = 'favorite-border';
-    color = 'gray';
-  }
+  const state = {
+    active: {
+      iconName: 'favorite',
+      color: 'tomato',
+    },
+    inactive: {
+      iconName: 'favorite-border',
+      color: 'gray',
+    },
+  };
+
+  const {iconName, color} = state[status];
 
   return (
     <TouchableOpacity
