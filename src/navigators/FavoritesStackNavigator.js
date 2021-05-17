@@ -2,7 +2,7 @@ import React, {useContext} from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {StyleSheet} from 'react-native';
 import {MovieDetailsScreen, FavoritesScreen} from '../screens';
-import {GlobalContext} from '../context/Provider';
+import {GlobalContext} from '../context/GlobalProvider';
 import {DETAILS_SCREEN, FAVORITES_SCREEN} from '../constants';
 import {Favorite} from '../components';
 

@@ -1,5 +1,5 @@
 import React, {createContext, useReducer, useEffect, useCallback} from 'react';
-import reducer from './reducer';
+import globalReducer from './globalReducer';
 import {retrieveData, storeData} from '../utils/storage';
 
 export const GlobalContext = createContext({});
@@ -12,7 +12,7 @@ const initialState = {
 
 const GlobalProvider = ({children}) => {
   const [{selected, movies, favorites}, dispatch] = useReducer(
-    reducer,
+    globalReducer,
     initialState,
   );
 

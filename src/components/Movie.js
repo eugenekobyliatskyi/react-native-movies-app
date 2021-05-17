@@ -20,7 +20,7 @@ const Movie = ({onPress, data}) => {
 
   return (
     <TouchableOpacity
-      style={styles.wrapper}
+      style={styles.container}
       onPress={() => onPress(data)}
       activeOpacity={0.6}>
       <Image
@@ -47,7 +47,7 @@ const Movie = ({onPress, data}) => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: {
+  container: {
     flexDirection: 'row',
     marginBottom: toNormalSize(30),
   },

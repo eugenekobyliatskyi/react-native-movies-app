@@ -1,6 +1,6 @@
 import {mergeData} from '../utils/storage';
 
-const reducer = (state, {type, payload}) => {
+const globalReducer = (state, {type, payload}) => {
   let newState;
 
   switch (type) {
@@ -33,4 +33,4 @@ const reducer = (state, {type, payload}) => {
   }
 };
 
-export default reducer;
+export default globalReducer;

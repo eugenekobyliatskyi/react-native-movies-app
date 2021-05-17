@@ -2,7 +2,7 @@ import React, {useEffect, useContext} from 'react';
 import {Button, StyleSheet} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {HomeScreen, MovieDetailsScreen} from '../screens';
-import {GlobalContext} from '../context/Provider';
+import {GlobalContext} from '../context/GlobalProvider';
 import {fetchMovies} from '../utils';
 import {retrieveData} from '../utils/storage';
 import {HOME_SCREEN, DETAILS_SCREEN} from '../constants';

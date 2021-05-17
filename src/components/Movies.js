@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import {StyleSheet, View, FlatList} from 'react-native';
-import {GlobalContext} from '../context/Provider';
+import {GlobalContext} from '../context/GlobalProvider';
 import {Movie} from './index';
 import {toNormalSize} from '../utils';
 

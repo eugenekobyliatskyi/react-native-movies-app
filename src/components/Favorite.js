@@ -21,7 +21,7 @@ const Favorite = ({active, onPress = () => {}}) => {
 
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={styles.container}
       onPress={onPress}
       activeOpacity={0.6}>
       <MaterialIcons name={iconName} size={26} color={color} />
@@ -30,7 +30,7 @@ const Favorite = ({active, onPress = () => {}}) => {
 };
 
 const styles = StyleSheet.create({
-  button: {
+  container: {
     paddingHorizontal: toNormalSize(20),
   },
 });

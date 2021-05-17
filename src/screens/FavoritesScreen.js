@@ -1,6 +1,6 @@
 import React, {useContext, useEffect, useState, useCallback} from 'react';
 import {Movies, Search} from '../components';
-import {GlobalContext} from '../context/Provider';
+import {GlobalContext} from '../context/GlobalProvider';
 import {DETAILS_SCREEN} from '../constants';
 
 const FavoritesScreen = ({navigation}) => {
