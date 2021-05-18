@@ -13,16 +13,24 @@ const fetchGenres = async () => {
 };
 
 const fetchMovies = async callback => {
-  const {results: detailsOfMovies} = await fetchMovieDetails();
-  const {genres} = await fetchGenres();
+  try {
+    const {results: detailsOfMovies} = await fetchMovieDetails();
+    const {genres} = await fetchGenres();
 
-  detailsOfMovies.forEach(details => {
-    details.genres = details.genre_ids.map(genre_id =>
-      genres.find(({id}) => id === genre_id),
-    );
-  });
+    detailsOfMovies.forEach(details => {
+      details.genres = details.genre_ids.map(genre_id =>
+        genres.find(({id}) => id === genre_id),
+      );
+    });
 
-  callback(detailsOfMovies);
+    callback(detailsOfMovies);
+  } catch (err) {
+    if (err instanceof TypeError) {
+      setTimeout(() => {
+        fetchMovies(callback);
+      }, 1000);
+    }
+  }
 };
 
 export default fetchMovies;
